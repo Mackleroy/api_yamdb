@@ -22,7 +22,7 @@ Install all dependencies
 ```
 pip install -r requirements.txt
 ```
-Then come in root derictory of project and apply regular configurations
+Then come in root directory of project and apply regular configurations
 ```
 python3 manage.py makemigratons
 python3 manage.py migrate
