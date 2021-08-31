@@ -15,6 +15,7 @@ User = get_user_model()
 
 
 class RegistrationView(APIView):
+    """Registration with sending confirmation code by Email"""
     permission_classes = [permissions.AllowAny]
 
     def post(self, request, *args, **kwargs):
@@ -36,6 +37,7 @@ class RegistrationView(APIView):
 
 
 class ConfirmationEmail(APIView):
+    """Activate user by confirmation code from Email"""
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
@@ -55,6 +57,7 @@ class ConfirmationEmail(APIView):
 
 
 class GetJWTToken(APIView):
+    """Custom JWT token getting by email and password"""
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
@@ -68,4 +71,3 @@ class GetJWTToken(APIView):
                     'access': str(refresh.access_token),
                 }, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_400_BAD_REQUEST)
-

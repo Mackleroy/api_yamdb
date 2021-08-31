@@ -19,6 +19,7 @@ User = get_user_model()
 
 
 class TitleViewSet(viewsets.ModelViewSet):
+    """Title for admin create/edit or user read only"""
     queryset = Title.objects.all()
     serializer_class = TitleSerializer
     permission_classes = [IsAdminOrReadOnly]
@@ -38,6 +39,7 @@ class TitleViewSet(viewsets.ModelViewSet):
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
+    """Class for Review model actions"""
     serializer_class = ReviewSerializer
     permission_classes = [SimpleResourceUsage]
     http_method_names = ['get', 'post', 'head', 'patch', 'delete']
@@ -70,6 +72,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
+    """Class for Review model actions"""
     serializer_class = CommentSerializer
     permission_classes = [SimpleResourceUsage]
     http_method_names = ['get', 'post', 'head', 'patch', 'delete']
@@ -96,6 +99,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 class UsersViewSet(viewsets.ModelViewSet):
+    """Class for User model actions, AdminOnly"""
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsCustomAdminUser]
@@ -110,6 +114,7 @@ class UsersViewSet(viewsets.ModelViewSet):
 
 
 class UserSelfProfileView(APIView):  # APIView because url dont have PK
+    """Edit user's profile by himself"""
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
@@ -130,6 +135,7 @@ class CategoryListCreateDestroyViewSet(mixins.ListModelMixin,
                                        mixins.CreateModelMixin,
                                        mixins.DestroyModelMixin,
                                        viewsets.GenericViewSet):
+    """Class for Category model actions, AdminOnly"""
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [IsAdminOrReadOnly]
@@ -142,6 +148,7 @@ class GenreListCreateDestroyViewSet(mixins.ListModelMixin,
                                     mixins.CreateModelMixin,
                                     mixins.DestroyModelMixin,
                                     viewsets.GenericViewSet):
+    """Class for Genre model actions, AdminOnly"""
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
     permission_classes = [IsAdminOrReadOnly]

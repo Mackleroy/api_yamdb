@@ -3,6 +3,7 @@ from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 # class ReadOnlyOrAuthorizedCreateOrAuthorModerAdminEdit(BasePermission):
 class SimpleResourceUsage(BasePermission):
+    """ Read only for not authorized users or POST for authorized """
     def has_permission(self, request, view):
         user = request.user
         if user.is_authenticated:
@@ -10,6 +11,7 @@ class SimpleResourceUsage(BasePermission):
         else:
             return request.method in SAFE_METHODS
 
+    """Read only or admin/moder/author edit object"""
     def has_object_permission(self, request, view, obj):
         user = request.user
         if user.is_authenticated:
